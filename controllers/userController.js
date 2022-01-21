@@ -20,7 +20,7 @@ module.exports = {
     addUserFriend(req, res) {
 
     },
-    removeUserFriend(req, res) {
+    deleteUserFriend(req, res) {
 
     }
 }
