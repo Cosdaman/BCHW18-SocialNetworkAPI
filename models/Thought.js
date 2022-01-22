@@ -1,29 +1,6 @@
 const mongoose = require('mongoose');
+const Reaction = require('./Reaction')
 
-const reactionSchema = new mongoose.Schema({
-    reactionId: {
-        type: mongoose.Types.ObjectId,
-        default: new mongoose.Types.ObjectId(),
-    },
-    reactionBody: {
-        type: String,
-        required: true,
-        maxlength: 280,
-    },
-    username: {
-        type: String,
-        required: true,
-    },
-    createdAt: {
-        type: Date,
-        default: Date()
-
-        // getter thing
-    },
-},
-    {
-        id: false,
-    });
 
 const modelSchema = new mongoose.Schema(
     {
@@ -43,7 +20,7 @@ const modelSchema = new mongoose.Schema(
             type: String,
             required: true,
         },
-        reactions: [reactionSchema]
+        reactions: [Reaction]
     },
     {
         toJSON: {
@@ -51,9 +28,10 @@ const modelSchema = new mongoose.Schema(
         }
     });
 
-modelSchema.virtual('reactionCount').get(function () {
-    return this.reactions.length;
-})
+modelSchema.virtual('reactionCount')
+    .get(function () {
+        return this.reactions.length;
+    })
 
 const Thought = mongoose.model('Thought', modelSchema);
 

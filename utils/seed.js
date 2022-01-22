@@ -21,18 +21,25 @@ connection.once('open', async () => {
     }
 
     for (let index = 0; index < 4; index++) {
-        let thought = {
-            thoughtText: `thought text ${index}`,
-            createdAt: Date(),
-            username: `user${Math.floor(Math.random() * 4)}`,
+        let uservar = {
+            username: `user${index}`,
+            email: `email${index}@email${index}.com`
         }
-        thoughts.push(thought)
+        users.push(uservar)
     }
 
-    console.log(thoughts)
+    // for (let index = 0; index < 4; index++) {
 
+    //     let thought = {
+    //         thoughtText: `thought text ${index}`,
+    //         createdAt: Date(),
+    //         username: `user${Math.floor(Math.random() * 4)}`,
+    //     }
+    //     thoughts.push(thought)
+    // }
 
     // await User.collection.insertMany(users);
-    await Thought.collection.insertMany(thoughts);
+    // await Thought.collection.insertMany(thoughts);
+
 })
 

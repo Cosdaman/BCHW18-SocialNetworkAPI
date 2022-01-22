@@ -3,13 +3,17 @@ const { User } = require('../models')
 module.exports = {
 
     getUsers(req, res) {
-        res.send('get user')
+        User.find()
+            .then((users) => res.json(users))
+            .catch((err) => res.status(500).json(err));
     },
     getSingleUser(req, res) {
         res.send('get single user')
     },
     createUser(req, res) {
-        res.send('create user')
+        User.create(req.body)
+            .then((user) => res.json(user))
+            .catch((err) => res.status(500).json(err));
     },
     updateUser(req, res) {
         res.send('update user')
