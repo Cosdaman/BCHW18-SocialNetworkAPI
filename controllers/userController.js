@@ -7,6 +7,7 @@ module.exports = {
             .then((users) => res.json(users))
             .catch((err) => res.status(500).json(err));
     },
+
     getSingleUser(req, res) {
         User.findOne({ _id: req.params.id })
             .select('-__v')
@@ -18,11 +19,13 @@ module.exports = {
             )
             .catch((err) => res.status(500).json(err));
     },
+
     createUser(req, res) {
         User.create(req.body)
             .then((user) => res.json(user))
             .catch((err) => res.status(500).json(err));
     },
+
     updateUser(req, res) {
         User.findOneAndUpdate(
             { _id: req.params.id },
@@ -34,9 +37,11 @@ module.exports = {
         ).then((user) => res.json(user)
         ).catch((err) => res.status(500).json(err));
     },
+
     deleteUser(req, res) {
         res.send('delete user')
     },
+
     addUserFriend(req, res) {
         User.findOneAndUpdate(
             { _id: req.params.userId },
@@ -45,6 +50,7 @@ module.exports = {
         ).then((user) => res.json(user)
         ).catch((err) => res.status(500).json(err));
     },
+    
     deleteUserFriend(req, res) {
         User.findOneAndUpdate(
             { _id: req.params.userId },
