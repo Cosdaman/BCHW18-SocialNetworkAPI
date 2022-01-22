@@ -15,10 +15,12 @@ const modelSchema = new mongoose.Schema(
             match: [/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/, 'Email address not valid']
         },
         thoughts: [{
-            type: mongoose.Schema.Types.ObjectId, ref: 'thought'
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'Thought'
         }],
         friends: [{
-            type: mongoose.Schema.Types.ObjectId, ref: 'user'
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'User'
         }]
     },
     {
