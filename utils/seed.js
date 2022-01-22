@@ -38,7 +38,7 @@ connection.once('open', async () => {
     //     thoughts.push(thought)
     // }
 
-    // await User.collection.insertMany(users);
+    await User.collection.insertMany(users);
     // await Thought.collection.insertMany(thoughts);
 
 })
