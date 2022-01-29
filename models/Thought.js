@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const Reaction = require('./Reaction')
+const helpers =  require('../utils/formatDate'); 
 
 
 const modelSchema = new mongoose.Schema(
@@ -14,7 +15,7 @@ const modelSchema = new mongoose.Schema(
         createdAt: {
             type: Date,
             default: Date.now,
-            // getter thing
+            get: helpers.formatDate,
         },
         username: {
             type: String,
@@ -24,6 +25,7 @@ const modelSchema = new mongoose.Schema(
     },
     {
         toJSON: {
+            getters: true,
             virtuals: true,
         }
     });
@@ -32,6 +34,8 @@ modelSchema.virtual('reactionCount')
     .get(function () {
         return this.reactions.length;
     })
+
+
 
 const Thought = mongoose.model('Thought', modelSchema);
 
