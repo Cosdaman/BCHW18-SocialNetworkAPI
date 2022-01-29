@@ -2,9 +2,14 @@
 
 ## Description  
 
+This is a basic social network application through Node that utilizes MongoDB through Mongoose.
 
 ## Technologies Used  
 
+- NodeJS
+- Express
+- Mongoose
+- DayJS
 
 ## Contact Information  
 
