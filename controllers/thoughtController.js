@@ -8,12 +8,10 @@ module.exports = {
     },
     getSingleThought(req, res) {
         Thought.findOne({ _id: req.params.id })
-            .select('-__v')
-            .populate('friends')
-            .then((user) =>
-                !user
-                    ? res.status(404).json({ message: 'No user with that ID' })
-                    : res.json(user)
+            .then((thought) =>
+                !thought
+                    ? res.status(404).json({ message: 'No thought with that ID' })
+                    : res.json(thought)
             )
             .catch((err) => res.status(500).json(err));
     },
@@ -34,10 +32,27 @@ module.exports = {
             .catch((err) => res.status(500).json(err));
     },
     updateThought(req, res) {
-        res.send('update thought')
+        Thought.findOneAndUpdate(
+            { _id: req.params.id },
+            {
+                thoughtText: req.body.thoughtText,
+            },
+            { new: true }
+        ).then((user) => res.json(user)
+        ).catch((err) => res.status(500).json(err));
     },
     deleteThought(req, res) {
-        res.send('delete thought')
+        Thought.findOneAndDelete({ _id: req.params.id })
+            .then(async (thought) => {
+                await User.findOneAndUpdate(
+                    { username: thought.username },
+                    { $pull: { thoughts: thought.id } },
+                    { new: true }
+                )
+            })
+            .then(() => res.json({ message: 'Thought deleted!' }))
+            .catch((err) => res.status(500).json(err));
+
     },
     createReaction(req, res) {
         res.send('create react')
