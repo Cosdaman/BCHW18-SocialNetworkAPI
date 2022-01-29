@@ -55,9 +55,19 @@ module.exports = {
 
     },
     createReaction(req, res) {
-        res.send('create react')
+        Thought.findOneAndUpdate(
+            { _id: req.params.thoughtId },
+            { $addToSet: { reactions: req.body } },
+            { new: true }
+        ).then((user) => res.json(user)
+        ).catch((err) => res.status(500).json(err));
     },
     deleteReaction(req, res) {
-        res.send('delete reaction')
+        Thought.findOneAndUpdate(
+            { _id: req.params.thoughtId },
+            { $pull: { reactions: {_id: req.body.reactionId}  } },
+            { new: true }
+        ).then((user) => res.json(user)
+        ).catch((err) => res.status(500).json(err));
     },
 }
