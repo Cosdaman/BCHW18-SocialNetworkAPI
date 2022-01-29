@@ -2,7 +2,7 @@
 
 ## Description  
 
-This is a basic social network application through Node that utilizes MongoDB through Mongoose.
+This is a basic social network API which uses Node that utilizing MongoDB through Mongoose.
 
 ## Technologies Used  
 
